@@ -14,12 +14,14 @@ class Field:
     _field = None
 
     def __init__(self, size=(4, 2), diameter=10, complexity=0.75, density=0.75):
-        height = int((size[0] * ACRE_HEIGHT_FT) / diameter)
-        width = int((size[1] * ACRE_WIDTH_FT) / diameter)
+        height = (size[0] * ACRE_HEIGHT_FT) // diameter
+        width = (size[1] * ACRE_WIDTH_FT) // diameter
         shape = ((height // 2) * 2 + 1, (width // 2) * 2 + 1)
+
         self.complexity = int(complexity * (5 * (shape[0] + shape[1])))
         self.density = int(density * ((shape[0] // 2) * (shape[1] // 2)))
         self._field = np.zeros(shape, dtype=bool)
+        self._solution = np.zeros(shape, dtype=bool)
         return
 
     def display(self):
@@ -49,7 +51,7 @@ class Field:
                 if y < shape[0] - 2:
                     neighbors.append((y+2, x))
                 if neighbors:
-                    y_, x_ = neighbors[randint(0, len(neighbors) - 1)]
+                    y_, x_ = neighbors[randint(0, len(neighbors)-1)]
                     if self._field[y_, x_] == 0:
                         self._field[y_, x_] = 1
                         self._field[y_ + (y - y_) // 2, x_ + (x - x_) // 2] = 1
@@ -58,11 +60,12 @@ class Field:
         self.finish()
         return
 
-    def finish(self):
+    def find_solution(self):
         shape = self._field.shape
         tmp = np.where(self._field == 1)
-        start_points = [(r, c) for (r, c) in zip(tmp[0], tmp[1])
-                        if ((r == 0 and c < shape[1]-1) or (c == 0 and r < shape[0]-1))]
+        start_points = [
+            (r, c) for (r, c) in zip(tmp[0], tmp[1])
+            if ((r == 0 and c < shape[1]-1) or (c == 0 and r < shape[0]-1))]
 
         for p in start_points:
             queue = Queue()
@@ -84,9 +87,9 @@ class Field:
                 visited[root] = 1
         return
 
-    def _get_neighbors(self, idx):
+    def _get_neighbors(self, point):
         neighbors = []
-        row, col = idx
+        row, col = point
         if row-1 >= 0:
             neighbors.append((row-1, col))
         if row+1 < self._field.shape[0]:

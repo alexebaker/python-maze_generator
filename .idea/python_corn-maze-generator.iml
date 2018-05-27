@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/corn_maze_generator" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (python_corn-maze-generator)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.5 (python_corn-maze-generator)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">
