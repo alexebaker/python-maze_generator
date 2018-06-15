@@ -38,9 +38,13 @@ def parse_args():
 
 def run():
     """Parses cli arguments and runs the requested functions."""
-    cli_args = parse_args()
+    cli_args = vars(parse_args())
     field = Field(**cli_args)
     field.generate()
     field.find_solution()
     field.display()
     return
+
+
+if __name__ == '__main__':
+    run()
