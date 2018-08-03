@@ -1,3 +1,3 @@
-# Corn Maze Generator
+# Maze Generator
 
-Creates mazes that can be used for a corn maze
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/alexebaker/python-maze_generator/blob/master/LICENSE)

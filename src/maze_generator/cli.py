@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
+
 import argparse
 
-from .field import Field
+from maze_generator.maze import Maze
 
 
-def parse_args():
+def get_parser():
     parser = argparse.ArgumentParser(
         description='Generates a maze.')
 
@@ -33,16 +35,16 @@ def parse_args():
         help='Dimensions of the maze.')
 
     parser.set_defaults()
-    return parser.parse_args()
+    return parser
 
 
 def run():
     """Parses cli arguments and runs the requested functions."""
-    cli_args = vars(parse_args())
-    field = Field(**cli_args)
-    field.generate()
-    field.find_solution()
-    field.display()
+    cli_args = vars(get_parser().parse_args())
+    maze = Maze(**cli_args)
+    maze.generate()
+    maze.find_solution()
+    maze.display()
     return
 
 
