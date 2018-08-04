@@ -104,7 +104,7 @@ class Maze(object):
         for point in edge_points:
             if not self._maze[point]:
                 self._maze[point] = True
-                if not self._is_connected():
+                if not self.is_connected():
                     self._maze[point] = False
         return
 
@@ -120,7 +120,7 @@ class Maze(object):
             visited = np.zeros(self._maze.shape, dtype=bool)
             queue.put(p)
 
-            while not queue.empty():
+            while not queue.is_empty():
                 root = queue.get()
 
                 for neighbor in self._get_neighbors(root):
@@ -147,7 +147,7 @@ class Maze(object):
         visited = np.ones(self._maze.shape, dtype=bool)
         queue.put(start_point)
 
-        while not queue.empty():
+        while not queue.is_empty():
             root = queue.get()
 
             for neighbor in self._get_neighbors(root):
