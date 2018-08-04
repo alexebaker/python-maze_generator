@@ -2,12 +2,15 @@
 
 import argparse
 
+from maze_generator import __version__
 from maze_generator.maze import Maze
 
 
 def get_parser():
     parser = argparse.ArgumentParser(
         description='Generates a maze.')
+
+    parser.add_argument('--version', action='version', version='%(prog)s v' + __version__)
 
     parser.add_argument(
         '--density', '-d',
@@ -39,7 +42,7 @@ def get_parser():
 
 
 def run():
-    """Parses cli arguments and runs the requested functions."""
+    """Parses cli arguments and runs the relevant functions."""
     cli_args = vars(get_parser().parse_args())
     maze = Maze(**cli_args)
     maze.generate()

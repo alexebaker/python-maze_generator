@@ -17,14 +17,12 @@ setup(
     keywords=['maze'],
     long_description=codecs.open('README.md', encoding="utf8").read(),
     entry_points={
-        'console_scripts': ['maze-generator=maze_generator.cli:run']
-    },
-    install_requires=[],
+        'console_scripts': ['maze-generator=maze_generator.cli:run']},
+    install_requires=[
+        'numpy',
+        'matplotlib'],
     setup_requires=[
-        'pytest-runner'
-    ],
+        'pytest-runner'],
     tests_require=[
         'pytest',
-        'pytest-cov',
-    ]
-)
+        'pytest-cov'])
