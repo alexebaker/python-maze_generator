@@ -20,9 +20,4 @@ setup(
         'console_scripts': ['maze-generator=maze_generator.cli:run']},
     install_requires=[
         'numpy',
-        'matplotlib'],
-    setup_requires=[
-        'pytest-runner'],
-    tests_require=[
-        'pytest',
-        'pytest-cov'])
+        'matplotlib'])

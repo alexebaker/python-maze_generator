@@ -9,7 +9,7 @@ from maze_generator.maze import BFSQueueEmpty
 def test_empty():
     q = BFSQueue()
     assert q.is_empty()
-    q._queue = [1]
+    q.put(1)
     assert not q.is_empty()
     return
 
@@ -31,4 +31,12 @@ def test_get():
 
     with pytest.raises(BFSQueueEmpty):
         q.get()
+    return
+
+
+def test_contains():
+    q = BFSQueue()
+    assert 1 not in q
+    q.put(1)
+    assert 1 in q
     return

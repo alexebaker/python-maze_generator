@@ -3,7 +3,7 @@
 import argparse
 
 from maze_generator import __version__
-from maze_generator.maze import Maze
+from maze_generator import Maze
 
 
 def get_parser():
